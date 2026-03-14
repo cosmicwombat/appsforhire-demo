@@ -39,6 +39,13 @@
       font-size: .75rem; font-weight: 700; letter-spacing: .04em;
       text-transform: uppercase;
     }
+    .header-right { display: flex; align-items: center; gap: .75rem; }
+    .logout-link {
+      color: rgba(255,255,255,.45); font-size: .75rem; font-weight: 600;
+      text-decoration: none; letter-spacing: .02em;
+      transition: color .15s;
+    }
+    .logout-link:hover { color: rgba(255,255,255,.85); }
     .hero {
       background: linear-gradient(140deg, var(--navy) 0%, #2d1b69 60%, #1a3a5c 100%);
       color: var(--white); text-align: center;
@@ -145,7 +152,10 @@
     </svg>
     <span>Apps<em>ForHire</em></span>
   </a>
-  <span class="demo-badge">🧪 Demo Environment</span>
+  <div class="header-right">
+    <span class="demo-badge">🧪 Demo Environment</span>
+    <a class="logout-link" href="/cdn-cgi/access/logout">Sign out</a>
+  </div>
 </header>
 
 <div class="hero">
@@ -200,6 +210,24 @@
       <p class="counter-hint">Your runs: <strong id="runs4">—</strong> / 10</p>
     </a>
 
+    <a class="app-card" href="review-responder/">
+      <div class="app-icon" style="background:#ede9fe;">⭐</div>
+      <span class="app-tier" style="background:#ede9fe;color:#5b21b6;">Reputation <span class="ai-tag">✦ Gemini</span></span>
+      <h2>The Review Responder</h2>
+      <p>Paste any customer review — Gemini writes a professional reply in seconds. Choose your tone: Professional, Warm, Direct, or Apologetic. One-click copy to your clipboard.</p>
+      <span class="app-launch">Open App →</span>
+      <p class="counter-hint">Your runs: <strong id="runsRR">—</strong> / 10</p>
+    </a>
+
+    <a class="app-card" href="face-off/">
+      <div class="app-icon" style="background:#f0f9ff;">⚔️</div>
+      <span class="app-tier" style="background:#f0f9ff;color:#1e1b4b;">AI Comparison <span class="ai-tag">◆ vs ✦</span></span>
+      <h2>The AI Face-Off</h2>
+      <p>Give both AIs the same writing task — they answer simultaneously. See which one sounds more like your brand, and which one finishes faster. Then pick your winner.</p>
+      <span class="app-launch">Open App →</span>
+      <p class="counter-hint">Your battles: <strong id="runsFO">—</strong> / 5</p>
+    </a>
+
   </div>
 
   <div class="what-next">
@@ -221,6 +249,10 @@
     const n = parseInt(localStorage.getItem(`demo_runs_${key}`) || '0');
     document.getElementById(`runs${i+1}`).textContent = Math.min(n, 10);
   });
+  document.getElementById('runsRR').textContent =
+    Math.min(parseInt(localStorage.getItem('demo_runs_review_responder') || '0'), 10);
+  document.getElementById('runsFO').textContent =
+    Math.min(parseInt(localStorage.getItem('demo_runs_face_off') || '0'), 5);
 </script>
 </body>
 </html>
